@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShopCart.Pages.OrderDetails"
+             xmlns:ff="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+             Title="Order Details">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+                <StackLayout   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <ListView Margin="0,5,0,0" x:Name="Productlist" ItemsSource="{Binding Productlist,Mode=TwoWay}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                <Grid Margin="20,10">
+                                    <Grid.ColumnDefinitions>
+                                         <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="5.5*"/>
+                                        <ColumnDefinition Width="20"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame Grid.Column="0" Margin="0,0,10,0" Grid.RowSpan="4" Padding="5" HasShadow="False" BackgroundColor="Transparent" BorderColor="{Binding BuyingProduct.OrderItems[0].Product.ThemeCol}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                        <ff:CachedImage Source="{Binding ProductImage}" Aspect="AspectFill" HeightRequest="80" WidthRequest="80"/>
+                                    </Frame>
+                                    <Label LineBreakMode="TailTruncation" Grid.Column="1" Grid.Row="0" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" TextColor="Black" FontSize="14">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding ProductName}" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding ProdDetails}" TextColor="Black" FontSize="13" FontAttributes="Bold" LineBreakMode="TailTruncation" MaxLines="2"/>
+
+                                </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+            <Button Text="Add to Card" Margin="20" BackgroundColor="{StaticResource PageBackgroundColor}" CornerRadius="10" FontAttributes="Bold" FontSize="16" TextColor="White" Clicked="AddTocard_Clicked"  VerticalOptions="EndAndExpand" />
+            <Button Text="Check Out" Margin="20" BackgroundColor="{StaticResource PageBackgroundColor}" CornerRadius="10" FontAttributes="Bold" FontSize="16" TextColor="White" Clicked="Checkout_Clicked"  VerticalOptions="EndAndExpand" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
